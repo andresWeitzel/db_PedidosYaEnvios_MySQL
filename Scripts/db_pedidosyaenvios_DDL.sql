@@ -30,11 +30,11 @@ drop table if exists shippins;
 create table products(
 	
 id int(12) auto_increment primary key,
-value int(10) not null,
-description varchar(400) not null,
+value decimal(6,3) not null,
+description varchar(700) not null,
 sku varchar(10) not null,
-volume int(10) not null,
-weight int(10) not null,
+volume decimal(3,2) not null,
+weight decimal(3,2) not null,
 quantity int(10) not null,
 product_type varchar(20) not null,
 creation_date datetime not null,
@@ -54,6 +54,15 @@ alter table products
 add constraint UNIQUE_products_description_sku
 unique(description, sku);
 
+-- CHECK VALUE
+alter table products
+add constraint CHECK_products_value
+check (value > 0.000);
+
+-- CHECK VOLUME_WEIGHT
+alter table products
+add constraint CHECK_products_volume_weight
+check (volume > 0.00 and weight > 0.00);
 
 -- CHECK UPDATE_DATE
 alter table products
