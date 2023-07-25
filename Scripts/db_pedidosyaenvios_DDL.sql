@@ -17,6 +17,7 @@ use db_pedidosyaenvios_mysql;
 drop table if exists products;
 drop table if exists waypoints;
 drop table if exists routes;
+drop table if exists routes_pricings;
 drop table if exists shippins;
 
 
@@ -58,11 +59,6 @@ unique(description, sku);
 alter table products
 add constraint CHECK_products_update_date
 check (update_date >= creation_date);
-
-
-
--- ---------------------------------------------------------------------------
--- ---------------------------------------------------------------------------
 
 
 -- ---------------------------------------------------------------------------
@@ -109,3 +105,83 @@ check (update_date >= creation_date);
 
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
+
+-- ======= Tabla routes ===========
+
+
+create table routes(
+	
+id int(12) auto_increment primary key,
+delivery_mode varchar(50) not null,
+estimated_pickup_time varchar(100) not null,
+estimated_driving_time int(10) not null,
+delivery_time_from varchar(100) not null,
+delivery_time_to varchar(100) not null,
+distance int(10) not null,
+creation_date datetime not null,
+update_date datetime not null
+);
+
+-- ======= Restricciones Tabla routes ===========
+
+-- UNIQUE ID
+alter table routes 
+add constraint UNIQUE_routes_id
+unique(id);
+
+
+-- CHECK DELIVERY_TIME
+alter table routes 
+add constraint CHECK_routes_delivery_time
+check(delivery_time_from != delivery_time_to);
+
+
+-- CHECK UPDATE_DATE
+alter table routes
+add constraint CHECK_routes_update_date
+check (update_date >= creation_date);
+
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla routes_pricings ===========
+
+
+create table routes_pricings(
+	
+id int(12) auto_increment primary key,
+route_id int(12) not null,
+subtotal int(10) not null,
+taxes int(10) not null,
+total int(10) not null,
+currency varchar(50) not null,
+creation_date datetime not null,
+update_date datetime not null
+);
+
+-- ======= Restricciones Tabla routes_pricings ===========
+
+-- UNIQUE ID
+alter table routes_pricings 
+add constraint UNIQUE_routes_pricings_id
+unique(id);
+
+-- FK ROUTES
+alter table routes_pricings 
+add constraint FK_routes_pricings_route_id 
+foreign key(route_id)
+references routes(id)
+ON DELETE CASCADE;
+
+-- CHECK SUBTOTAL_TAXES_TOTAL_DISTANCE
+alter table routes_pricings 
+add constraint CHECK_subtotal_taxes_total_distance
+check(subtotal >=0 and taxes >=0 and total >=0 and distance >= 0);
+
+
+-- CHECK UPDATE_DATE
+alter table routes_pricings
+add constraint CHECK_routes_pricings_update_date
+check (update_date >= creation_date);
+
