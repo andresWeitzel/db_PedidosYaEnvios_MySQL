@@ -32,11 +32,11 @@ create table products(
 id int(12) auto_increment primary key,
 value decimal(6,3) not null,
 description varchar(700) not null,
-sku varchar(10) not null,
+sku varchar(50) not null,
 volume decimal(3,2) not null,
 weight decimal(3,2) not null,
 quantity int(10) not null,
-product_type varchar(20) not null,
+product_type enum('STANDARD','FRAGILE','COLD') default "STANDARD",
 creation_date datetime not null,
 update_date datetime not null
 );
@@ -79,8 +79,9 @@ check (update_date >= creation_date);
 create table waypoints(
 	
 id int(12) auto_increment primary key,
-waypoint_type varchar(50) not null,
-address_street varchar(100) not null,
+waypoint_type enum('PICK_UP','DROP_OFF') not null,
+address_street varchar(300) not null,
+address_additional varchar(300) not null,
 city varchar(30) not null,
 latitude varchar(100) not null,
 longitude varchar(100) not null,
