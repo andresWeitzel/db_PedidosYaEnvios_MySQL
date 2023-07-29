@@ -33,8 +33,8 @@ id int(12) auto_increment primary key,
 value decimal(6,3) not null,
 description varchar(700) not null,
 sku varchar(50) not null,
-volume decimal(3,2) not null,
-weight decimal(3,2) not null,
+volume decimal(6,3) not null,
+weight decimal(6,3) not null,
 quantity int(10) not null,
 product_type enum('STANDARD','FRAGILE','COLD') default "STANDARD",
 creation_date datetime not null,
@@ -62,7 +62,7 @@ check (value > 0.000);
 -- CHECK VOLUME_WEIGHT
 alter table products
 add constraint CHECK_products_volume_weight
-check (volume > 0.00 and weight > 0.00);
+check (volume > 0.000 and weight > 0.000);
 
 -- CHECK UPDATE_DATE
 alter table products

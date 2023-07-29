@@ -21,23 +21,38 @@ SET @updated_at = now();
 insert into products (value, description, sku, volume, weight, quantity
 , product_type, creation_date, update_date) values
 (4.378, 'NY Phila roll (5 piezas), spring roll (5 piezas) y golden roll (5 piezas).'
-,'JJUS78A', 0.5, 0.5 , 1, 'STANDARD', @created_at, @updated_at),
+,'JJUS78A', 1.892, 1.892 , 1, 'STANDARD', @created_at, @updated_at),
 (2.600, 'Arrolladitos primavera de carne. Relleno de carne vacuna.','U3J2221', 0.2, 0.2 
 , 2, 'STANDARD', @created_at, @updated_at),
 (12.900, '30 Piezas y Vino Fabric Malbec Piezas: 5 NY. phila, 5 spring, 5 dos salmones, 5 tropical, 5 huancainos, 2 niguiri de langostinos, 1 niguiri de salmón, 2 geishas de salmón.'
-,'LLOSPA11', 2.0, 2.0 , 1, 'STANDARD', @created_at, @updated_at);
+,'LLOSPA11', 3.789, 3.789 , 1, 'FRAGILE', @created_at, @updated_at),
+(6.970, 'Combo 2 hamburguesas doble queso y 1 Brahma 1L'
+,'ALO1221S', 2.788, 2.788 , 1, 'STANDARD', @created_at, @updated_at),
+(9.760, '2 Packs IPA Artesanales'
+,'POS1124D', 4.994, 4.994 , 2, 'COLD', @created_at, @updated_at),
+(4.699, 'Combo Smirnoff Frambuesa x2'
+,'IWU7SSA1', 3.0, 3.0 , 2, 'COLD', @created_at, @updated_at);
 
 
-insert into waypoints (waypoint_type, address_street, city, latitude, longitude
+insert into waypoints (waypoint_type, address_street, address_additional  , city, latitude, longitude
 , phone, name, instructions, creation_date, update_date) values
-('DROP_OFF', 'Locutorio Alberdi, Curapaligüe 62, C1406 DAN, Buenos Aires', 'C.A.B.A'
+('DROP_OFF', 'Curapaligüe 62' ,'Locutorio Alberdi, Curapaligüe 62, C1406 DAN, Buenos Aires', 'C.A.B.A'
 , '-34.626264', '-58.453692', '+5491178211422', 'Juan Castro', 'Local al lado de Cerrajeria 24hs'
 ,@created_at, @updated_at),
-('PICK_UP', 'McDonalds, Av. Rivadavia 5730, C1406 CABA', 'C.A.B.A'
+('DROP_OFF', 'Av San justo 221', 'Edificio San carlos', 'C.A.B.A'
+, '-35.45633', '-54.126135', '+54911738298291', 'Marcos Gutierrez', '-'
+,@created_at, @updated_at),
+('DROP_OFF', 'Yerbal 141' , 'Hotel Real, Yerbal 141, C1405 CABA', 'C.A.B.A'
+, '-34.615201', '-58.432563', '+5491187339028', 'Román Peralta', 'Hotel Real 7°B'
+,@created_at, @updated_at),
+('PICK_UP', 'Av. Rivadavia 5730','McDonalds, Av. Rivadavia 5730, C1406 CABA', 'C.A.B.A'
 , '-34.622633', '-58.446133', '+5491178290177', 'Yoselin Martinez', 'Entre Hortiguera y Victor Martinez'
 ,@created_at, @updated_at),
-('DROP_OFF', 'Hotel Real, Yerbal 141, C1405 CABA', 'C.A.B.A'
-, '-34.615201', '-58.432563', '+5491187339028', 'Román Peralta', 'Hotel Real 7°B'
+('PICK_UP', 'Puerto azul 029', 'Casona maldonado' , 'San Justo - Provincia'
+, '-32.998312', '-67.838822', '+5491162719902', 'Jeremias', 'Casa porton negro PB'
+,@created_at, @updated_at),
+('PICK_UP', 'San pedrito 89', 'Supermecado shin shuan 2 - San pedrito 89', 'C.A.B.A'
+, '-34.615201', '-58.432563', '+5491192012223', 'Lei shu', 'Lei shu'
 ,@created_at, @updated_at);
 
 select * from products;
