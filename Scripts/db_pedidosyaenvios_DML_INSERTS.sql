@@ -17,6 +17,7 @@ SET @updated_at = now();
 
 
 -- PRODUCTS : https://www.pedidosya.com.ar/restaurantes/buenos-aires/fabric-caballito-parque-menu?origin=shop_list
+-- restaurantes :https://www.pedidosya.com.ar/restaurantes/tigre
 
 insert into products (value, description, sku, volume, weight, quantity
 , product_type, creation_date, update_date) values
@@ -31,7 +32,17 @@ insert into products (value, description, sku, volume, weight, quantity
 (9.760, '2 Packs IPA Artesanales'
 ,'POS1124D', 4.994, 4.994 , 2, 'COLD', @created_at, @updated_at),
 (4.699, 'Combo Smirnoff Frambuesa x2'
-,'IWU7SSA1', 3.0, 3.0 , 2, 'COLD', @created_at, @updated_at);
+,'IWU7SSA1', 3.0, 3.0 , 2, 'COLD', @created_at, @updated_at),
+(1.578, 'Multipack X3 unidades de palito helado Kit Kat'
+,'POSDD812', 2.2, 2.2 , 1, 'COLD', @created_at, @updated_at),
+(1.620, 'Sandwich Bolognesa | Pan de campo relleno con asadito argentino, queso dambo y tomate'
+,'SSA8Q99', 1.1, 1.1 , 1, 'STANDARD', @created_at, @updated_at),
+(4.560, 'Sandwich Criollo | Pan baguete relleno de Porchetta, chedar, cherrys y jamon'
+,'LOSAP12', 1.2, 1.2 , 3, 'STANDARD', @created_at, @updated_at),
+(19.100, 'Luigis grande | Comen 4 pican 8 - pata cocida - Bondiola con pimienta y Lomo asado'
+,'WS7S8AA', 4.89, 4.89 , 1, 'STANDARD', @created_at, @updated_at),
+(14.600, 'Mediterranea chica | Comen 2 pican 4 - Bondiola cerrana - crudo tipo ibérico'
+,'WS7S9AS', 2.3, 2.3 , 1, 'STANDARD', @created_at, @updated_at);
 
 
 insert into waypoints (waypoint_type, address_street, address_additional  , city, latitude, longitude
@@ -53,9 +64,26 @@ insert into waypoints (waypoint_type, address_street, address_additional  , city
 ,@created_at, @updated_at),
 ('PICK_UP', 'San pedrito 89', 'Supermecado shin shuan 2 - San pedrito 89', 'C.A.B.A'
 , '-34.615201', '-58.432563', '+5491192012223', 'Lei shu', 'Lei shu'
+,@created_at, @updated_at),
+('DROP_OFF', 'Av. Córdoba 213', 'Edificio castelar 4I', 'C.A.B.A'
+, '-31.621234', '-56.212331', '+5491178938837', 'Marcos', 'Marcos'
+,@created_at, @updated_at),
+('PICK_UP', 'Av. Cazón 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi´s Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi´s picadas & sandwichs - tigre'
+,@created_at, @updated_at),
+('PICK_UP', 'Av. Cazón 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi´s Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi´s picadas & sandwichs - tigre'
+,@created_at, @updated_at),
+('PICK_UP', 'Av. Cazón 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi´s Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi´s picadas & sandwichs - tigre'
+,@created_at, @updated_at),
+('PICK_UP', 'Av. Cazón 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi´s Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi´s picadas & sandwichs - tigre'
 ,@created_at, @updated_at);
 
+
 select * from products;
+describe products;
 select * from waypoints;
 
 

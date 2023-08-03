@@ -100,11 +100,6 @@ add constraint UNIQUE_waypoints_id
 unique(id);
 
 
--- UNIQUE ADDRESS_NAME
-alter table waypoints 
-add constraint UNIQUE_waypoints_address_name
-unique(address_street, name);
-
 
 -- CHECK UPDATE_DATE
 alter table waypoints
