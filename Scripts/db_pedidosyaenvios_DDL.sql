@@ -18,7 +18,7 @@ drop table if exists products;
 drop table if exists waypoints;
 drop table if exists routes;
 drop table if exists routes_pricings;
-drop table if exists shippins;
+drop table if exists delivery_offers;
 
 
 -- ---------------------------------------------------------------------------
@@ -117,12 +117,8 @@ check (update_date >= creation_date);
 create table routes(
 	
 id int(12) auto_increment primary key,
-delivery_mode varchar(50) not null,
-estimated_pickup_time varchar(100) not null,
-estimated_driving_time int(10) not null,
-delivery_time_from varchar(100) not null,
-delivery_time_to varchar(100) not null,
-distance int(10) not null,
+distance varchar(20) not null,
+transport_type enum ('DRIVING','TRANSIT','WALKING','CYCLING') default 'WALKING',
 creation_date datetime not null,
 update_date datetime not null
 );
@@ -133,12 +129,6 @@ update_date datetime not null
 alter table routes 
 add constraint UNIQUE_routes_id
 unique(id);
-
-
--- CHECK DELIVERY_TIME
-alter table routes 
-add constraint CHECK_routes_delivery_time
-check(delivery_time_from != delivery_time_to);
 
 
 -- CHECK UPDATE_DATE
@@ -177,7 +167,7 @@ alter table routes_pricings
 add constraint FK_routes_pricings_route_id 
 foreign key(route_id)
 references routes(id)
-ON DELETE CASCADE;
+on update cascade on delete cascade;
 
 -- CHECK SUBTOTAL_TAXES_TOTAL_DISTANCE
 alter table routes_pricings 
@@ -189,4 +179,59 @@ check(subtotal >=0 and taxes >=0 and total >=0 and distance >= 0);
 alter table routes_pricings
 add constraint CHECK_routes_pricings_update_date
 check (update_date >= creation_date);
+
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla delivery_offers ===========
+
+
+create table delivery_offers(
+	
+id int(12) auto_increment primary key,
+waypoint_id int not null,
+routes_id int, 
+delivery_offer_id varchar(255) not null,
+delivery_mode varchar(50) not null,
+estimated_pickup_time varchar(100) not null,
+estimated_driving_time int(10) not null,
+delivery_time_from varchar(100) not null,
+delivery_time_to varchar(100) not null,
+creation_date datetime not null,
+update_date datetime not null
+);
+
+-- ======= Restricciones Tabla delivery_offers ===========
+
+-- UNIQUE ID
+alter table delivery_offers 
+add constraint UNIQUE_delivery_offers_id
+unique(id);
+
+-- FK WAYPOINT
+alter table delivery_offers 
+add constraint FK_delivery_offers_waypoint_id 
+foreign key(waypoint_id)
+references waypoints(id)
+on update cascade on delete cascade;
+
+-- FK ROUTES_ID
+alter table delivery_offers 
+add constraint FK_delivery_offers_routes_id 
+foreign key(routes_id)
+references routes(id)
+on update cascade on delete cascade;
+
+-- CHECK DELIVERY_TIME
+alter table delivery_offers 
+add constraint CHECK_delivery_offers_delivery_time
+check(delivery_time_from != delivery_time_to);
+
+
+-- CHECK UPDATE_DATE
+alter table delivery_offers
+add constraint CHECK_delivery_offers_update_date
+check (update_date >= creation_date);
+
 
