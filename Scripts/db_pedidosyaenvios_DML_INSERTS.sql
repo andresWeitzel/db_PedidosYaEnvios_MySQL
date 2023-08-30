@@ -12,11 +12,13 @@ use db_pedidosyaenvios_mysql;
 delete from products;
 delete from waypoints;
 delete from routes;
+delete from routes_pricings;
 
 -- AUTO_INCREMENT
 alter table products auto_increment 1;
 alter table waypoints auto_increment 1;
 alter table routes auto_increment 1;
+alter table routes_pricings auto_increment 1;
 
 -- VARS
 SET @created_at = now();
@@ -69,20 +71,21 @@ insert into waypoints (waypoint_type, address_street, address_additional  , city
 ('PICK_UP', 'San pedrito 89', 'Supermecado shin shuan 2 - San pedrito 89', 'C.A.B.A'
 , '-34.615201', '-58.432563', '+5491192012223', 'Lei shu', 'Lei shu'
 ,@created_at, @updated_at),
-('DROP_OFF', 'Av. C?rdoba 213', 'Edificio castelar 4I', 'C.A.B.A'
+('DROP_OFF', 'Av. Córdoba 213', 'Edificio castelar 4I', 'C.A.B.A'
 , '-31.621234', '-56.212331', '+5491178938837', 'Marcos', 'Marcos'
 ,@created_at, @updated_at),
-('PICK_UP', 'Av. Caz?n 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
+('PICK_UP', 'Av. Castro Barros 4590, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
 , '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi?s picadas & sandwichs - tigre'
 ,@created_at, @updated_at),
 ('PICK_UP', 'Av. Caz?n 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
-, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi?s picadas & sandwichs - tigre'
+, '-33.819233', '-64.920182', '+5491187831123', 'Sofía', 'Luigi?s picadas & sandwichs - tigre'
 ,@created_at, @updated_at),
-('PICK_UP', 'Av. Caz?n 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
-, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi?s picadas & sandwichs - tigre'
+('DROP_OFF', 'Av. Pedro Goyena 1515, Buenos Aires', 'Rapa Nui', 'C.A.B.A'
+, '-37.772812', '-71.99238123', '+5491187662922', 'Carlos Gonzalez', 'Rapanui'
 ,@created_at, @updated_at),
-('PICK_UP', 'Av. Caz?n 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
-, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi?s picadas & sandwichs - tigre'
+
+('PICK_UP', 'Av. Independencia 1912, C1225AAO CABA', 'Panaderia Italiana La Pompeya', 'C.A.B.A'
+, '-36.822233', '-72.920182', '+5491188227722', 'Gustavo', 'Panadería la italiana'
 ,@created_at, @updated_at);
 
 
@@ -91,20 +94,58 @@ insert into routes (distance, transport_type, creation_date, update_date ) value
 ('35min-3000m', 'WALKING',  @created_at, @updated_at),
 ('15min-4500m', 'DRIVING',  @created_at, @updated_at),
 ('45min-6700m', 'TRANSIT',  @created_at, @updated_at),
-('5min-200m', 'WALKING',  @created_at, @updated_at);
+('5min-200m', 'WALKING',  @created_at, @updated_at),
+('12min-780m', 'CYCLING',  @created_at, @updated_at),
+('25min-6500m', 'DRIVING',  @created_at, @updated_at),
+('45min-13K', 'DRIVING',  @created_at, @updated_at),
+('32min-9K', 'TRANSIT',  @created_at, @updated_at),
+('38min-11K', 'TRANSIT',  @created_at, @updated_at),
+('2min-200m', 'WALKING',  @created_at, @updated_at);
 
 
+insert into routes_pricings (route_id, subtotal, taxes, total, currency
+, creation_date, update_date) values
+(1, 600.00, 300.00, 900.00, "ARS", @created_at, @updated_at),
+(2, 1100.00, 500.00, 1600.00, "ARS", @created_at, @updated_at),
+(3, 400.00, 800.00, 1200.00, "ARS", @created_at, @updated_at),
+(4, 860.00, 600.00, 1460.00, "ARS", @created_at, @updated_at),
+(5, 1250.00, 450.00, 1460.00, "ARS", @created_at, @updated_at),
+(6, 1420.00, 510.00, 1930.00, "ARS", @created_at, @updated_at),
+(7, 1450.00, 680.00, 2167.00, "ARS", @created_at, @updated_at),
+(8, 1750.00, 500.00, 2250.00, "ARS", @created_at, @updated_at),
+(9, 1620.00, 810.00, 2430.00, "ARS", @created_at, @updated_at),
+(10, 1463.00, 1317.00, 2780.00, "ARS", @created_at, @updated_at),
+(11, 500.00, 100.00, 700.00, "ARS", @created_at, @updated_at);
+
+	
 /*
-insert into delivery_offers (waypoint_id, delivery_mode, estimated_pickup_time, estimated_driving_time
-,delivery_time_from, delivery_time_to, distance, creation_date, update_date ) values 
-(1, ),
+insert into delivery_offers (waypoint_id, routes_id, delivery_offer_id
+, delivery_mode, estimated_pickup_time, estimated_driving_time
+,delivery_time_from, delivery_time_to, creation_date, update_date ) values 
+(1, 1,  ),
 ();
+
+
+create table delivery_offers(
+	
+id int(12) auto_increment primary key,
+waypoint_id int not null,
+routes_id int, 
+delivery_offer_id varchar(255) not null,
+delivery_mode varchar(50) not null,
+estimated_pickup_time varchar(100) not null,
+estimated_driving_time int(10) not null,
+delivery_time_from varchar(100) not null,
+delivery_time_to varchar(100) not null,
+creation_date datetime not null,
+update_date datetime not null
+);
+
+
 */
-
-
-
 select * from products;
 describe products;
 select * from waypoints;
 select * from routes;
+select * from routes_pricings;
 

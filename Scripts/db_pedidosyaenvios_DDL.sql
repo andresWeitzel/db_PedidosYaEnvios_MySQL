@@ -147,9 +147,9 @@ create table routes_pricings(
 	
 id int(12) auto_increment primary key,
 route_id int(12) not null,
-subtotal int(10) not null,
-taxes int(10) not null,
-total int(10) not null,
+subtotal decimal(6,2) not null,
+taxes decimal(6,2) not null,
+total decimal(6,2) not null,
 currency varchar(50) not null,
 creation_date datetime not null,
 update_date datetime not null
