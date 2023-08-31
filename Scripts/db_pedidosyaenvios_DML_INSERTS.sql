@@ -13,16 +13,25 @@ delete from products;
 delete from waypoints;
 delete from routes;
 delete from routes_pricings;
+delete from delivery_offers;
 
 -- AUTO_INCREMENT
 alter table products auto_increment 1;
 alter table waypoints auto_increment 1;
 alter table routes auto_increment 1;
 alter table routes_pricings auto_increment 1;
+alter table delivery_offers auto_increment 1;
 
 -- VARS
-SET @created_at = now();
-SET @updated_at = now();
+set @created_at = now();
+set @updated_at = now();
+set @created_at_ten_minute_interval = DATE_ADD(NOW(), INTERVAL 10 minute);
+set @created_at_twenty_minute_interval = DATE_ADD(NOW(), INTERVAL 20 minute);
+set @created_at_thirty_minute_interval = DATE_ADD(NOW(), INTERVAL 30 minute);
+set @created_at_fourty_five_minute_interval = DATE_ADD(NOW(), INTERVAL 45 minute);
+set @created_at_one_hour_interval = DATE_ADD(NOW(), INTERVAL 1 hour);
+set @created_at_two_hour_interval = DATE_ADD(NOW(), INTERVAL 2 hour);
+
 
 
 insert into products (value, description, sku, volume, weight, quantity
@@ -117,35 +126,20 @@ insert into routes_pricings (route_id, subtotal, taxes, total, currency
 (10, 1463.00, 1317.00, 2780.00, "ARS", @created_at, @updated_at),
 (11, 500.00, 100.00, 700.00, "ARS", @created_at, @updated_at);
 
-	
-/*
+
+
 insert into delivery_offers (waypoint_id, routes_id, delivery_offer_id
 , delivery_mode, estimated_pickup_time, estimated_driving_time
 ,delivery_time_from, delivery_time_to, creation_date, update_date ) values 
-(1, 1,  ),
-();
+(1, 1, uuid(), 'EXPRESS', @created_at_twenty_minute_interval 
+, @created_at_ten_minute_interval , @created_at, @created_at_thirty_minute_interval
+, @created_at, @updated_at);
 
 
-create table delivery_offers(
-	
-id int(12) auto_increment primary key,
-waypoint_id int not null,
-routes_id int, 
-delivery_offer_id varchar(255) not null,
-delivery_mode varchar(50) not null,
-estimated_pickup_time varchar(100) not null,
-estimated_driving_time int(10) not null,
-delivery_time_from varchar(100) not null,
-delivery_time_to varchar(100) not null,
-creation_date datetime not null,
-update_date datetime not null
-);
-
-
-*/
 select * from products;
 describe products;
 select * from waypoints;
 select * from routes;
 select * from routes_pricings;
+select * from delivery_offers;
 
