@@ -14,6 +14,7 @@ delete from waypoints;
 delete from routes;
 delete from routes_pricings;
 delete from delivery_offers;
+delete from shipping_order;
 
 -- AUTO_INCREMENT
 alter table products auto_increment 1;
@@ -21,6 +22,7 @@ alter table waypoints auto_increment 1;
 alter table routes auto_increment 1;
 alter table routes_pricings auto_increment 1;
 alter table delivery_offers auto_increment 1;
+alter table shipping_order auto_increment 1;
 
 -- VARS
 set @created_at = now();
@@ -30,9 +32,14 @@ set @created_at_twenty_minute_interval = DATE_ADD(NOW(), INTERVAL 20 minute);
 set @created_at_thirty_minute_interval = DATE_ADD(NOW(), INTERVAL 30 minute);
 set @created_at_fourty_five_minute_interval = DATE_ADD(NOW(), INTERVAL 45 minute);
 set @created_at_one_hour_interval = DATE_ADD(NOW(), INTERVAL 1 hour);
+set @created_at_one_hour_thirty_minute_interval = DATE_ADD(NOW(), INTERVAL 90 minute);
 set @created_at_two_hour_interval = DATE_ADD(NOW(), INTERVAL 2 hour);
 
 
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla products ===========
 
 insert into products (value, description, sku, volume, weight, quantity
 , product_type, creation_date, update_date) values
@@ -60,7 +67,15 @@ insert into products (value, description, sku, volume, weight, quantity
 ,'WS7S9AS', 2.3, 2.3 , 1, 'STANDARD', @created_at, @updated_at);
 
 
-insert into waypoints (waypoint_type, address_street, address_additional  , city, latitude, longitude
+select * from products;
+describe products;
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla waypoints ===========
+
+insert into waypoints (waypoint_type, address_street, address_additional, city, latitude, longitude
 , phone, name, instructions, creation_date, update_date) values
 ('DROP_OFF', 'Curapalig?e 62' ,'Locutorio Alberdi, Curapalig?e 62, C1406 DAN, Buenos Aires', 'C.A.B.A'
 , '-34.626264', '-58.453692', '+5491178211422', 'Juan Castro', 'Local al lado de Cerrajeria 24hs'
@@ -98,6 +113,15 @@ insert into waypoints (waypoint_type, address_street, address_additional  , city
 ,@created_at, @updated_at);
 
 
+select * from waypoints;
+describe waypoints;
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla routes ===========
+
+
 insert into routes (distance, transport_type, creation_date, update_date ) values 
 ('10min-600m', 'CYCLING' ,@created_at, @updated_at),
 ('35min-3000m', 'WALKING',  @created_at, @updated_at),
@@ -111,6 +135,14 @@ insert into routes (distance, transport_type, creation_date, update_date ) value
 ('38min-11K', 'TRANSIT',  @created_at, @updated_at),
 ('2min-200m', 'WALKING',  @created_at, @updated_at);
 
+
+select * from routes;
+describe routes;
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla routes_pricings ===========
 
 insert into routes_pricings (route_id, subtotal, taxes, total, currency
 , creation_date, update_date) values
@@ -127,19 +159,47 @@ insert into routes_pricings (route_id, subtotal, taxes, total, currency
 (11, 500.00, 100.00, 700.00, "ARS", @created_at, @updated_at);
 
 
+select * from routes_pricings;
+describe routes_pricings;
 
-insert into delivery_offers (waypoint_id, routes_id, delivery_offer_id
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla delivery_offers ===========
+
+insert into delivery_offers (waypoint_id, delivery_offer_id
 , delivery_mode, estimated_pickup_time, estimated_driving_time
 ,delivery_time_from, delivery_time_to, creation_date, update_date ) values 
-(1, 1, uuid(), 'EXPRESS', @created_at_twenty_minute_interval 
+(1, uuid(), 'EXPRESS', @created_at_twenty_minute_interval 
 , @created_at_ten_minute_interval , @created_at, @created_at_thirty_minute_interval
+, @created_at, @updated_at),
+(2, uuid(), 'CROSS_DOCKING', @created_at_fourty_five_minute_interval 
+, @created_at_thirty_minute_interval , @created_at, @created_at_thirty_minute_interval
+, @created_at, @updated_at),
+(3, uuid(), 'SCHEDULE', @created_at_one_hour_thirty_minute_interval 
+, @created_at_fourty_five_minute_interval , @created_at, @created_at_two_hour_interval
+, @created_at, @updated_at),
+(4, uuid(), 'EXPRESS', @created_at_ten_minute_interval 
+, @created_at_twenty_minute_interval , @created_at, @created_at_thirty_minute_interval
+, @created_at, @updated_at),
+(5, uuid(), 'CROSS_DOCKING', @created_at_thirty_minute_interval 
+, @created_at_fourty_five_minute_interval , @created_at, @created_at_thirty_minute_interval
 , @created_at, @updated_at);
 
-
-select * from products;
-describe products;
-select * from waypoints;
-select * from routes;
-select * from routes_pricings;
 select * from delivery_offers;
+describe delivery_offers;
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla shipping_order ===========
+
+insert into shipping_order ( product_id, route_pricing_id, delivery_offer_id
+, shipping_id, confirmation_code, reference_id, status, share_location_url
+, notification_mail, online_support_url ) values
+(1, 1, 1, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/KeHeaXVwrPi2cFJ19'
+, 'example@gmail.com', 'https://bienvenida.pedidosya.com/help.html');
+
+select * from shipping_order;
+describe shipping_order;
 
