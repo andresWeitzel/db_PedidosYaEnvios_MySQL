@@ -107,7 +107,6 @@ insert into waypoints (waypoint_type, address_street, address_additional, city, 
 ('DROP_OFF', 'Av. Pedro Goyena 1515, Buenos Aires', 'Rapa Nui', 'C.A.B.A'
 , '-37.772812', '-71.99238123', '+5491187662922', 'Carlos Gonzalez', 'Rapanui'
 ,@created_at, @updated_at),
-
 ('PICK_UP', 'Av. Independencia 1912, C1225AAO CABA', 'Panaderia Italiana La Pompeya', 'C.A.B.A'
 , '-36.822233', '-72.920182', '+5491188227722', 'Gustavo', 'Panadería la italiana'
 ,@created_at, @updated_at);
@@ -198,7 +197,11 @@ insert into shipping_order ( product_id, route_pricing_id, delivery_offer_id
 , shipping_id, confirmation_code, reference_id, status, share_location_url
 , notification_mail, online_support_url ) values
 (1, 1, 1, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/KeHeaXVwrPi2cFJ19'
-, 'example@gmail.com', 'https://bienvenida.pedidosya.com/help.html');
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'),
+(2, 2, 2, uuid(), uuid(), uuid(), 'CANCELLED', 'https://goo.gl/maps/KeHeaXVwrPi2caJd0'
+, 'pedidosya_notification_order', 'https://bienvenida.pedidosya.com/help.html'),
+(3, 3, 3, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/bajksdbJ36612'
+, 'pedidosya_notification_order', 'https://bienvenida.pedidosya.com/help.html');
 
 select * from shipping_order;
 describe shipping_order;

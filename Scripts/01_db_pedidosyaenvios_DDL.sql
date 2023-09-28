@@ -37,7 +37,7 @@ sku varchar(50) not null,
 volume decimal(6,3) not null,
 weight decimal(6,3) not null,
 quantity int(10) not null,
-product_type enum('STANDARD','FRAGILE','COLD') default "STANDARD",
+product_type enum('STANDARD','FRAGILE','COLD') default 'STANDARD',
 creation_date datetime not null,
 update_date datetime not null
 );
