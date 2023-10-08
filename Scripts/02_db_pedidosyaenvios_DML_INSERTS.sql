@@ -44,27 +44,27 @@ set @created_at_two_hour_interval = DATE_ADD(NOW(), INTERVAL 2 hour);
 insert into products (value, description, sku, volume, weight, quantity
 , product_type, creation_date, update_date) values
 (4.378, "NY Phila roll (5 piezas), spring roll (5 piezas) y golden roll (5 piezas)."
-,'JJUS78A', 1.892, 1.892 , 1, 'STANDARD', @created_at, @updated_at),
-(2.600, "Arrolladitos primavera de carne. Relleno de carne vacuna.",'U3J2221', 0.2, 0.2 
+,'JJUS78A3332', 1.892, 1.892 , 1, 'STANDARD', @created_at, @updated_at),
+(2.600, "Arrolladitos primavera de carne. Relleno de carne vacuna.",'U3J2221KIO2', 0.2, 0.2 
 , 2, 'STANDARD', @created_at, @updated_at),
 (12.900, "30 Piezas y Vino Fabric Malbec Piezas: 5 NY. phila, 5 spring, 5 dos salmones, 5 tropical, 5 huancainos, 2 niguiri de langostinos, 1 niguiri de salm?n, 2 geishas de salmon."
-,'LLOSPA11', 3.789, 3.789 , 1, 'FRAGILE', @created_at, @updated_at),
+,'LLOSPA11LO3P', 3.789, 3.789 , 1, 'FRAGILE', @created_at, @updated_at),
 (6.970, "Combo 2 hamburguesas doble queso y 1 Brahma 1L"
-,'ALO1221S', 2.788, 2.788 , 1, 'STANDARD', @created_at, @updated_at),
+,'ALO1221SY2TG3', 2.788, 2.788 , 1, 'STANDARD', @created_at, @updated_at),
 (9.760, "2 Packs IPA Artesanales"
-,'POS1124D', 4.994, 4.994 , 2, 'COLD', @created_at, @updated_at),
+,'POS1124D22J7', 4.994, 4.994 , 2, 'COLD', @created_at, @updated_at),
 (4.699, "Combo Smirnoff Frambuesa x2"
-,'IWU7SSA1', 3.0, 3.0 , 2, 'COLD', @created_at, @updated_at),
+,'IWU7SSA133K9', 3.0, 3.0 , 2, 'COLD', @created_at, @updated_at),
 (1.578, "Multipack X3 unidades de palito helado Kit Kat"
-,'POSDD812', 2.2, 2.2 , 1, 'COLD', @created_at, @updated_at),
+,'POSDD812LOD9', 2.2, 2.2 , 1, 'COLD', @created_at, @updated_at),
 (1.620, "Sandwich Bolognesa - Pan de campo relleno con asadito argentino, queso dambo y tomate"
-,'SSA8Q99', 1.1, 1.1 , 1, 'STANDARD', @created_at, @updated_at),
+,'SSA8Q99YSTG6', 1.1, 1.1 , 1, 'STANDARD', @created_at, @updated_at),
 (4.560, "Sandwich Criollo - Pan baguete relleno de Porchetta, chedar, cherrys y jamon"
-,'LOSAP12', 1.2, 1.2 , 3, 'STANDARD', @created_at, @updated_at),
+,'LOSAP123312', 1.2, 1.2 , 3, 'STANDARD', @created_at, @updated_at),
 (19.100, "Luigis grande - Comen 4 pican 8 - pata cocida - Bondiola con pimienta y Lomo asado"
-,'WS7S8AA', 4.89, 4.89 , 1, 'STANDARD', @created_at, @updated_at),
+,'WS7S8AAH2H1', 4.89, 4.89 , 1, 'STANDARD', @created_at, @updated_at),
 (14.600, "Mediterranea chica - Comen 2 pican 4 - Bondiola cerrana - crudo tipo ib?rico"
-,'WS7S9AS', 2.3, 2.3 , 1, 'STANDARD', @created_at, @updated_at);
+,'WS7S9ASK2IJ', 2.3, 2.3 , 1, 'STANDARD', @created_at, @updated_at);
 
 
 select * from products;

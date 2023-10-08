@@ -47,13 +47,13 @@ update_date datetime not null
 -- UNIQUE ID
 alter table products 
 add constraint UNIQUE_products_id
-unique(id);
+unique key (id);
 
-
--- UNIQUE DESCRIPTION_SKU
+-- UNIQUE SKU
 alter table products 
-add constraint UNIQUE_products_description_sku
-unique(description, sku);
+add constraint UNIQUE_products_sku
+unique key (sku);
+
 
 -- CHECK VALUE
 alter table products
@@ -98,9 +98,7 @@ update_date datetime not null
 -- UNIQUE ID
 alter table waypoints 
 add constraint UNIQUE_waypoints_id
-unique(id);
-
-
+unique key (id);
 
 -- CHECK UPDATE_DATE
 alter table waypoints
@@ -129,7 +127,7 @@ update_date datetime not null
 -- UNIQUE ID
 alter table routes 
 add constraint UNIQUE_routes_id
-unique(id);
+unique key (id);
 
 
 -- CHECK UPDATE_DATE
@@ -161,7 +159,7 @@ update_date datetime not null
 -- UNIQUE ID
 alter table routes_pricings 
 add constraint UNIQUE_routes_pricings_id
-unique(id);
+unique key (id);
 
 -- FK ROUTES
 alter table routes_pricings 
@@ -207,7 +205,7 @@ update_date datetime not null
 -- UNIQUE ID
 alter table delivery_offers 
 add constraint UNIQUE_delivery_offers_id
-unique(id);
+unique key (id);
 
 -- FK WAYPOINT
 alter table delivery_offers 
@@ -255,7 +253,7 @@ online_support_url varchar(255) not NULL
 -- UNIQUE ID
 alter table shipping_order 
 add constraint UNIQUE_shipping_order_id
-unique(id);
+unique key (id);
 
 -- FK PRODUCT_ID
 alter table shipping_order 
