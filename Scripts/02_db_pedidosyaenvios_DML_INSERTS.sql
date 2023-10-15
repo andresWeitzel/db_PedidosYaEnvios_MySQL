@@ -195,13 +195,23 @@ describe delivery_offers;
 
 insert into shipping_order ( product_id, route_pricing_id, delivery_offer_id
 , shipping_id, confirmation_code, reference_id, status, share_location_url
-, notification_mail, online_support_url ) values
+, notification_mail, online_support_url, creation_date, update_date ) values
 (1, 1, 1, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/KeHeaXVwrPi2cFJ19'
-, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'),
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'
+, @created_at, @updated_at),
 (2, 2, 2, uuid(), uuid(), uuid(), 'CANCELLED', 'https://goo.gl/maps/KeHeaXVwrPi2caJd0'
-, 'pedidosya_notification_order', 'https://bienvenida.pedidosya.com/help.html'),
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'
+, @created_at, @updated_at),
 (3, 3, 3, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/bajksdbJ36612'
-, 'pedidosya_notification_order', 'https://bienvenida.pedidosya.com/help.html');
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'
+, @created_at, @updated_at),
+(4, 4, 4, uuid(), uuid(), uuid(), 'CONFIRMED', 'https://goo.gl/maps/331jksdbJ36612'
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'
+, @created_at, @updated_at),
+(5, 5, 5, uuid(), uuid(), uuid(), 'CANCELLED', 'https://goo.gl/maps/9S9jksdbJ366KDL8'
+, 'pedidosya_notification_order@gmail.com', 'https://bienvenida.pedidosya.com/help.html'
+, @created_at, @updated_at);
+
 
 select * from shipping_order;
 describe shipping_order;

@@ -164,3 +164,58 @@ delivery_offer_id = 'f31533af-4cf0-11ee-8749-704d7b983710kk'
 , delivery_time_to = @created_at_one_hour_thirty_minute_interval
 , creation_date = @created_at , update_date = @updated_at
 where id = 1;
+
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ======= Tabla shipping_order ===========
+
+select * from shipping_order;
+describe shipping_order;
+
+-- Update all fields less a FK fields according the product id
+update shipping_order as ship_ord
+inner join products as prod
+on ship_ord.product_id = prod.id
+set ship_ord.shipping_id = '6626362f-6aca-11ee-900d-704d7b9928jj'
+, ship_ord.confirmation_code = '66263643-6aca-11ee-900d-674d7b99002'
+, ship_ord.reference_id = '23264648-5gca-rf3e-9S30d-604d7b990033'
+, ship_ord.status = 'CANCELLED'
+, ship_ord.share_location_url = 'https://goo.gl/maps/KeHeaXVwrPi2cFJ56'
+, ship_ord.notification_mail = 'pedidosya_notification_orders@gmail.com'
+, ship_ord.online_support_url = 'https://bienvenida.pedidosya.com/help.html'
+, ship_ord.update_date= @updated_at
+where ship_ord.product_id = 1;
+
+
+-- Update all fields less a FK fields according the route_pricing_id
+update shipping_order as ship_ord
+inner join routes_pricings as rout_pric
+on ship_ord.route_pricing_id  = rout_pric.id
+set ship_ord.shipping_id = 'o930cb79-6acc-11ee-901d-704d7b9900d2'
+, ship_ord.confirmation_code = '99938880-6aca-11ee-839i-674d7b99002'
+, ship_ord.reference_id = '2llopd2-5gca-rf3e-9S30d-604d7b990331'
+, ship_ord.status = 'CONFIRMED'
+, ship_ord.share_location_url = 'https://goo.gl/maps/KeHeaXVwrPi2cFJ578'
+, ship_ord.notification_mail = 'pedidosya_notification_orders@gmail.com'
+, ship_ord.online_support_url = 'https://pedidosya.com/help.html'
+, ship_ord.update_date= @updated_at
+where ship_ord.route_pricing_id = 2;
+
+
+-- Update all fields less a FK fields according the delivery_offer_id
+update shipping_order as ship_ord
+inner join delivery_offers as deliv_off
+on ship_ord.delivery_offer_id  = deliv_off.id
+set ship_ord.shipping_id = 'jue776es-2acc-11ee-331d-d04d7b9900d21'
+, ship_ord.confirmation_code = '29938880-6aca-11ee-839i-674d7b99003'
+, ship_ord.reference_id = 'pp09opd2-5gca-rf3e-9S30d-604d7b99033do'
+, ship_ord.status = 'CANCELLED'
+, ship_ord.share_location_url = 'https://goo.gl/maps/33HeaXVwrPi2cFJ57W'
+, ship_ord.notification_mail = 'pedidosya_notification_orders@gmail.com'
+, ship_ord.online_support_url = 'https://pedidosya.com/help.html'
+, ship_ord.update_date= @updated_at
+where ship_ord.delivery_offer_id = 3;
+
+

@@ -245,7 +245,9 @@ reference_id varchar(255) not NULL,
 status enum ('CONFIRMED', 'CANCELLED') DEFAULT 'CONFIRMED',
 share_location_url varchar(255) not NULL,
 notification_mail varchar(255) not NULL,
-online_support_url varchar(255) not NULL
+online_support_url varchar(255) not null,
+creation_date datetime not null,
+update_date datetime not null
 );
 
 -- ======= Restricciones Tabla shipping_order ===========
@@ -275,3 +277,9 @@ add constraint FK_shipping_order_delivery_offer_id
 foreign key(delivery_offer_id)
 references delivery_offers(id)
 on update cascade on delete cascade;
+
+
+-- CHECK UPDATE_DATE
+alter table shipping_order
+add constraint CHECK_shipping_order_update_date
+check (update_date >= creation_date);
