@@ -77,14 +77,14 @@ describe products;
 
 insert into waypoints (waypoint_type, address_street, address_additional, city, latitude, longitude
 , phone, name, instructions, creation_date, update_date) values
-('DROP_OFF', 'Curapalig?e 62' ,'Locutorio Alberdi, Curapalig?e 62, C1406 DAN, Buenos Aires', 'C.A.B.A'
+('DROP_OFF', 'Curapaligne 62' ,'Locutorio Alberdi, Curapaligne 62, C1406 DAN, Buenos Aires', 'C.A.B.A'
 , '-34.626264', '-58.453692', '+5491178211422', 'Juan Castro', 'Local al lado de Cerrajeria 24hs'
 ,@created_at, @updated_at),
 ('DROP_OFF', 'Av San justo 221', 'Edificio San carlos', 'C.A.B.A'
 , '-35.45633', '-54.126135', '+54911738298291', 'Marcos Gutierrez', '-'
 ,@created_at, @updated_at),
 ('DROP_OFF', 'Yerbal 141' , 'Hotel Real, Yerbal 141, C1405 CABA', 'C.A.B.A'
-, '-34.615201', '-58.432563', '+5491187339028', 'Rom?n Peralta', 'Hotel Real 7?B'
+, '-34.615201', '-58.432563', '+5491187339028', 'Roman Peralta', 'Hotel Real 7B'
 ,@created_at, @updated_at),
 ('PICK_UP', 'Av. Rivadavia 5730','McDonalds, Av. Rivadavia 5730, C1406 CABA', 'C.A.B.A'
 , '-34.622633', '-58.446133', '+5491178290177', 'Yoselin Martinez', 'Entre Hortiguera y Victor Martinez'
@@ -95,20 +95,20 @@ insert into waypoints (waypoint_type, address_street, address_additional, city, 
 ('PICK_UP', 'San pedrito 89', 'Supermecado shin shuan 2 - San pedrito 89', 'C.A.B.A'
 , '-34.615201', '-58.432563', '+5491192012223', 'Lei shu', 'Lei shu'
 ,@created_at, @updated_at),
-('DROP_OFF', 'Av. Córdoba 213', 'Edificio castelar 4I', 'C.A.B.A'
+('DROP_OFF', 'Av. Cordoba 213', 'Edificio castelar 4I', 'C.A.B.A'
 , '-31.621234', '-56.212331', '+5491178938837', 'Marcos', 'Marcos'
 ,@created_at, @updated_at),
-('PICK_UP', 'Av. Castro Barros 4590, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
-, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigi?s picadas & sandwichs - tigre'
+('PICK_UP', 'Av. Castro Barros 4590, B1648 Tigre, Provincia de Buenos Aires', 'Luigis Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Julieta Perez', 'Luigis picadas & sandwichs - tigre'
 ,@created_at, @updated_at),
-('PICK_UP', 'Av. Caz?n 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigi?s Tigre', 'Provincia de Bs as'
-, '-33.819233', '-64.920182', '+5491187831123', 'Sofía', 'Luigi?s picadas & sandwichs - tigre'
+('PICK_UP', 'Av. Joaquin v Gonzalez 310, B1648 Tigre, Provincia de Buenos Aires', 'Luigis Tigre', 'Provincia de Bs as'
+, '-33.819233', '-64.920182', '+5491187831123', 'Sofia', 'Luigis picadas & sandwichs - tigre'
 ,@created_at, @updated_at),
 ('DROP_OFF', 'Av. Pedro Goyena 1515, Buenos Aires', 'Rapa Nui', 'C.A.B.A'
 , '-37.772812', '-71.99238123', '+5491187662922', 'Carlos Gonzalez', 'Rapanui'
 ,@created_at, @updated_at),
 ('PICK_UP', 'Av. Independencia 1912, C1225AAO CABA', 'Panaderia Italiana La Pompeya', 'C.A.B.A'
-, '-36.822233', '-72.920182', '+5491188227722', 'Gustavo', 'Panadería la italiana'
+, '-36.822233', '-72.920182', '+5491188227722', 'Gustavo', 'Panaderia la italiana'
 ,@created_at, @updated_at);
 
 
@@ -120,6 +120,8 @@ describe waypoints;
 
 -- ======= Tabla routes ===========
 
+select * from routes;
+describe routes;
 
 insert into routes (distance, transport_type, creation_date, update_date ) values 
 ('10min-600m', 'CYCLING' ,@created_at, @updated_at),
@@ -135,8 +137,6 @@ insert into routes (distance, transport_type, creation_date, update_date ) value
 ('2min-200m', 'WALKING',  @created_at, @updated_at);
 
 
-select * from routes;
-describe routes;
 
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
